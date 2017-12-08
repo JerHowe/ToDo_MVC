@@ -1,15 +1,22 @@
 class ListsController < ApplicationController
+  before_action :require_login
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   # GET /lists
   # GET /lists.json
   def index
-    @lists = current_user.lists
+    if user_signed_in?
+      @lists = current_user.lists
+    else
+      redirect_to new_user_session_path, notice: "You must be signed in!"
+    end
   end
 
   # GET /lists/1
   # GET /lists/1.json
   def show
+    @item = Item.new
+    @item.list = @list
   end
 
   # GET /lists/new
