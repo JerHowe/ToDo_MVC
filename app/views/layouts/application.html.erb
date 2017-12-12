@@ -9,13 +9,29 @@
   </head>
 
   <body>
+
+     <div class="nav navbar-default navbar-inverse navbar-fixed-top">
+       <div class="container">
+          <ul class="nav navbar-nav">
+            <%= render 'nav_link', text: 'Home', path: root_path %>
+            <%= render 'nav_link', text: 'New Lists', path: new_list_path %>
+            <%= render 'nav_link', text: 'My Lists', path: lists_path %>
+          </ul>
+         <ul class="nav navbar-nav navbar-right">
+           <% if user_signed_in? %>
+             <%= render 'nav_link', text: "Signed in as #{current_user.email}", path: edit_user_registration_path %>
+             <%= render 'nav_link', text: 'Logout', path: destroy_user_session_path, link_options: {method: :delete} %>
+           <% else %>
+             <%= render 'nav_link', text: 'Login', path: new_user_session_path %>
+             <%= render 'nav_link', text: 'Sign Up', path: new_user_registration_path %>
+           <% end %>
+         </ul>
+       </div>
+     </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger'%>
-    <% else %>
-      <%= link_to 'Login', new_user_session_path, class: 'btn btn-success' %>
-    <% end %>
+
 
     <%= yield %>
   </body>
