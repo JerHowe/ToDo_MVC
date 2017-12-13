@@ -13,9 +13,20 @@
      <div class="nav navbar-default navbar-inverse navbar-fixed-top">
        <div class="container">
           <ul class="nav navbar-nav">
-            <%= render 'nav_link', text: 'Home', path: root_path %>
-            <%= render 'nav_link', text: 'New Lists', path: new_list_path %>
-            <%= render 'nav_link', text: 'My Lists', path: lists_path %>
+            <div class="navbar-header">
+              <%= link_to image_tag('ruby_on_rails_logo_red.png', class: 'main-logo', height: '40'), root_path %>
+            </div>
+
+            <% if user_signed_in? %>
+              <%= render 'nav_link', text: 'New Lists', path: new_list_path %>
+              <%= render 'nav_link', text: 'New Article', path: new_article_path %>
+              <%= render 'nav_link', text: 'My Lists', path: lists_path %>
+              <%= render 'nav_link', text: 'My Articles', path: articles_path %>
+            <% else %>
+              <%= render 'nav_link', text: 'New Lists', path: new_list_path %>
+              <%= render 'nav_link', text: 'New Article', path: new_article_path %>
+            <% end %>
+
           </ul>
          <ul class="nav navbar-nav navbar-right">
            <% if user_signed_in? %>
@@ -29,10 +40,11 @@
        </div>
      </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
 
-
-    <%= yield %>
   </body>
 </html>
