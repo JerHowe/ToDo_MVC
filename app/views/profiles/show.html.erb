@@ -1,0 +1,28 @@
+<div class="page-header text-center">
+    <h1>Profile for <%= @user.firstname %> <%= @user.lastname %></h1>
+    <small> <%= link_to 'Edit your profile', edit_user_registration_path %> </small>
+  </h1>
+</div>
+
+<div class="well">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Blogs <small> <%= link_to "Write New Blog", new_article_path %> </small> </h2>
+        <ul>
+          <% @articles.each do |article| %>
+          <li> <%= link_to article.title, edit_article_path(article) %> | <%= time_ago_in_words(article.created_at) %> </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <h2>Lists <small> <%= link_to "Create New List", new_list_path %> </small> </h2>
+        <ul>
+          <% @lists.each do |list| %>
+          <li> <%= link_to list.name, edit_list_path(list) %> | <%= time_ago_in_words(list.created_at) %> </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

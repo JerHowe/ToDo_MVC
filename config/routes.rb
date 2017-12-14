@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'admin/index'
+
+  get 'admin', to: 'admin#index', as: :admin
+  get 'admin/promote/:id', to: 'admin#promote', as: :promote
+
   resources :articles
+
   resources :lists do
     resources :items do
       member do
@@ -11,6 +17,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'welcome/index'
+  get 'profile', to: 'profiles#show', as: :profile
 
   root to: "welcome#index"
 
