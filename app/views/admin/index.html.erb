@@ -20,7 +20,7 @@
     Sign-Ins: <%= user.sign_in_count %> |
     <span title="<%= user.last_sign_in_at || "N/A" %>"> Last Sign-In: <%= user.last_sign_in_at ? time_ago_in_words(user.last_sign_in_at) : "N/A" %></span>
     <% unless user.is_admin %>
-      <%= link_to 'Promote', promote_path(user) %>
+      <%= link_to 'Promote', promote_path(user), remote: true, id: "promote-#{user.id}" %>
     <% else %>
       <strong>ADMIN</strong>
     <% end %>

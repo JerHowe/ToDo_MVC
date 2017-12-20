@@ -11,7 +11,6 @@ class AdminController < ApplicationController
   def promote
     @user = User.find(params[:id])
     @user.update_attribute(:is_admin, true)
-    redirect_to admin_path
   end
 
   private

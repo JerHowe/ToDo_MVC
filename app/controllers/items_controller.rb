@@ -66,7 +66,6 @@ class ItemsController < ApplicationController
 
   def toggle
     @item.update_attribute(:completed, !@item.completed)
-    redirect_to @item.list, notice: "Item was toggled."
   end
 
 

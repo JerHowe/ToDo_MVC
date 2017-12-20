@@ -13,8 +13,8 @@
 
 <ul id="list_items">
   <% @list.items.each do |item| %>
-    <li class="item <%= 'completed' if item.completed %>">
-      <%= link_to 'toggle', toggle_list_item_path(@list, item), method: :put %>
+    <li id="toggle-<%= item.id %>" class="item <%= 'completed' if item.completed %>">
+      <%= link_to 'toggle', toggle_list_item_path(@list, item), method: :put, remote: true %>
       <%= item.description %>
       <%= link_to 'destroy', list_item_path(@list, item), method: :delete %>
     </li>
